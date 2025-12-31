@@ -1,0 +1,13 @@
+# Source files (only publish dist)
+src/
+tsconfig.json
+
+# Development files
+.github/
+*.log
+.DS_Store
+
+# Test files
+__tests__/
+*.test.ts
+coverage/
