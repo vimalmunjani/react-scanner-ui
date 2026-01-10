@@ -1,6 +1,6 @@
 {
   "name": "react-scanner-ui",
-  "version": "1.0.0",
+  "version": "0.0.1",
   "main": "dist/index.js",
   "bin": {
     "react-scanner-ui": "dist/index.js"
@@ -11,6 +11,9 @@
   },
   "author": "Vimal Munjani <vimal.j.munjani@gmail.com>",
   "license": "MIT",
+  "publishConfig": {
+    "registry": "https://registry.npmjs.org/"
+  },
   "scripts": {
     "build": "tsc",
     "start": "node dist/index.js",
