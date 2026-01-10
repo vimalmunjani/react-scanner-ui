@@ -1,4 +1,4 @@
-import { existsSync } from 'fs';
+import { existsSync, readFileSync } from 'fs';
 import { execSync } from 'child_process';
 import { createInterface } from 'readline';
 
@@ -41,7 +41,23 @@ export function installReactScanner(): void {
   console.log('Installing react-scanner...');
   try {
     const useYarn = existsSync('yarn.lock');
-    const command = useYarn ? 'yarn add react-scanner' : 'npm install react-scanner';
+    let isWorkspace = false;
+
+    if (existsSync('package.json')) {
+      const packageContent = readFileSync('package.json', 'utf-8');
+      const packageJson = JSON.parse(packageContent);
+      if (packageJson.workspaces) {
+        isWorkspace = true;
+      }
+    }
+
+    let command;
+    if (useYarn) {
+      command = `yarn add react-scanner --dev${isWorkspace ? ' -W' : ''}`;
+    } else {
+      command = 'npm install react-scanner --save-dev';
+    }
+
     execSync(command, { stdio: 'inherit' });
     console.log('react-scanner installed successfully!');
   } catch (error) {
