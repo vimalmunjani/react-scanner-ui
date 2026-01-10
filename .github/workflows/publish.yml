@@ -1,9 +1,10 @@
 name: Publish to npm
 
 on:
-  push:
-    tags:
-      - "v*"
+  workflow_run:
+    workflows: ["Version & Tag"]
+    types:
+      - completed
 
 permissions:
   contents: read
@@ -11,11 +12,14 @@ permissions:
 
 jobs:
   publish:
+    if: ${{ github.event.workflow_run.conclusion == 'success' }}
     runs-on: ubuntu-latest
 
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+        with:
+          fetch-depth: 0   # REQUIRED for tags
 
       - name: Setup Node.js
         uses: actions/setup-node@v4
@@ -25,6 +29,9 @@ jobs:
 
       - name: Install dependencies
         run: yarn install --frozen-lockfile
+
+      - name: Build library
+        run: yarn build
 
       - name: Publish with provenance
         run: npm publish --provenance --access public
