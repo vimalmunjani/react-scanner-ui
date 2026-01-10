@@ -1,1 +1,0 @@
-export { ComponentTable } from './ComponentTable';

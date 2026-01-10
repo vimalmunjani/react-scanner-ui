@@ -1,6 +1,6 @@
-import { useState, useEffect } from 'react';
-import { ComponentTable } from './components/ComponentTable';
-import './App.css';
+import { useState, useEffect } from "react";
+import { ComponentTable } from "./ComponentTable";
+import "./App.css";
 
 export interface ScanData {
   [componentName: string]: {
@@ -20,7 +20,7 @@ function App() {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    fetch('/api/scan-data')
+    fetch("/api/scan-data")
       .then((res) => res.json())
       .then((result: ApiResponse) => {
         if (result.error) {
@@ -31,7 +31,7 @@ function App() {
         setLoading(false);
       })
       .catch((err) => {
-        setError('Failed to fetch scan data: ' + err.message);
+        setError("Failed to fetch scan data: " + err.message);
         setLoading(false);
       });
   }, []);

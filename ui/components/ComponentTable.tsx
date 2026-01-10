@@ -1,13 +1,13 @@
-import { useState } from 'react';
-import type { ScanData } from '../App';
-import './ComponentTable.css';
+import { useState } from "react";
+import type { ScanData } from "./App";
+import "./ComponentTable.css";
 
 interface ComponentTableProps {
   data: ScanData;
 }
 
-type SortKey = 'name' | 'count';
-type SortDirection = 'asc' | 'desc';
+type SortKey = "name" | "count";
+type SortDirection = "asc" | "desc";
 
 interface SortConfig {
   key: SortKey;
@@ -16,20 +16,20 @@ interface SortConfig {
 
 export function ComponentTable({ data }: ComponentTableProps) {
   const [sortConfig, setSortConfig] = useState<SortConfig>({
-    key: 'count',
-    direction: 'desc',
+    key: "count",
+    direction: "desc",
   });
 
   const handleSort = (key: SortKey) => {
     setSortConfig((prev) => ({
       key,
-      direction: prev.key === key && prev.direction === 'asc' ? 'desc' : 'asc',
+      direction: prev.key === key && prev.direction === "asc" ? "desc" : "asc",
     }));
   };
 
   const getSortIndicator = (key: SortKey) => {
-    if (sortConfig.key !== key) return '';
-    return sortConfig.direction === 'asc' ? '▲' : '▼';
+    if (sortConfig.key !== key) return "";
+    return sortConfig.direction === "asc" ? "▲" : "▼";
   };
 
   // Transform data into array and sort
@@ -39,11 +39,11 @@ export function ComponentTable({ data }: ComponentTableProps) {
   }));
 
   components.sort((a, b) => {
-    const aValue = sortConfig.key === 'name' ? a.name.toLowerCase() : a.count;
-    const bValue = sortConfig.key === 'name' ? b.name.toLowerCase() : b.count;
+    const aValue = sortConfig.key === "name" ? a.name.toLowerCase() : a.count;
+    const bValue = sortConfig.key === "name" ? b.name.toLowerCase() : b.count;
 
-    if (aValue < bValue) return sortConfig.direction === 'asc' ? -1 : 1;
-    if (aValue > bValue) return sortConfig.direction === 'asc' ? 1 : -1;
+    if (aValue < bValue) return sortConfig.direction === "asc" ? -1 : 1;
+    if (aValue > bValue) return sortConfig.direction === "asc" ? 1 : -1;
     return 0;
   });
 
@@ -58,13 +58,15 @@ export function ComponentTable({ data }: ComponentTableProps) {
       <table className="component-table">
         <thead>
           <tr>
-            <th onClick={() => handleSort('name')}>
+            <th onClick={() => handleSort("name")}>
               Component
-              <span className="sort-indicator">{getSortIndicator('name')}</span>
+              <span className="sort-indicator">{getSortIndicator("name")}</span>
             </th>
-            <th onClick={() => handleSort('count')}>
+            <th onClick={() => handleSort("count")}>
               Count
-              <span className="sort-indicator">{getSortIndicator('count')}</span>
+              <span className="sort-indicator">
+                {getSortIndicator("count")}
+              </span>
             </th>
           </tr>
         </thead>
