@@ -1,11 +1,10 @@
-<div align="center">
-  <img src="./logo.png" alt="React Scanner UI Logo" width="100" height="100">
-  
-  # React Scanner UI
+A dashboard generator that transforms 'react-scanner' output into a portable, interactive component usage insights dashboard.
 
-  ## Component scanner and visualization tool for React applications
+<div display="flex" align-items="center" justify-content="center" flex-direction="column">
+<img src="./logo.png" alt="React Scanner UI Logo" width="150" height="150">
+<h1> React Scanner UI </h1>
 </div>
-
+    
 [![npm version](https://badge.fury.io/js/react-scanner-ui.svg)](https://badge.fury.io/js/react-scanner-ui)
 [![GitHub stars](https://img.shields.io/github/stars/vimalmunjani/react-scanner-ui?style=social)](https://github.com/vimalmunjani/react-scanner-ui/stargazers)
 
