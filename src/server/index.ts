@@ -3,9 +3,7 @@ import {
   IncomingMessage,
   ServerResponse,
 } from "http";
-import { resolve, dirname } from "path";
-import { fileURLToPath } from "url";
-import polka from "polka";
+import { resolve } from "path";
 import { getScanData } from "../utils/scannerConfig";
 
 /**
@@ -26,16 +24,6 @@ function getUiRoot(): string {
  * (similar approach to Storybook's builder-vite)
  */
 export async function startServer(port: number): Promise<void> {
-  const server = createHttpServer();
-  const app = polka({ server });
-
-  // API endpoint to get scan data (served before Vite middleware)
-  app.get("/api/scan-data", (_req: IncomingMessage, res: ServerResponse) => {
-    res.setHeader("Content-Type", "application/json");
-    const result = getScanData();
-    res.end(JSON.stringify(result));
-  });
-
   // Dynamically import Vite to create dev server in middleware mode
   const { createServer: createViteServer } = await import("vite");
 
@@ -46,20 +34,27 @@ export async function startServer(port: number): Promise<void> {
     configFile: resolve(uiRoot, "vite.config.ts"),
     server: {
       middlewareMode: true,
-      hmr: {
-        server,
-      },
     },
     appType: "spa",
   });
 
-  // Use Vite's connect instance as middleware
-  app.use(
-    vite.middlewares as unknown as (
-      req: IncomingMessage,
-      res: ServerResponse,
-      next: () => void,
-    ) => void,
+  // Create HTTP server with manual routing
+  const server = createHttpServer(
+    (req: IncomingMessage, res: ServerResponse) => {
+      const url = req.url || "";
+
+      // Handle API routes FIRST - before Vite middleware
+      if (url === "/api/scan-data" || url.startsWith("/api/scan-data?")) {
+        res.setHeader("Content-Type", "application/json");
+        res.setHeader("Cache-Control", "no-cache");
+        const result = getScanData();
+        res.end(JSON.stringify(result));
+        return;
+      }
+
+      // Pass everything else to Vite
+      vite.middlewares(req, res);
+    },
   );
 
   // Handle server errors
@@ -80,16 +75,16 @@ export async function startServer(port: number): Promise<void> {
   process.on("SIGINT", shutdown);
   process.on("SIGTERM", shutdown);
 
-  return new Promise((resolve, reject) => {
+  return new Promise((resolvePromise, reject) => {
     server.on("error", reject);
 
-    app.listen({ port, host: "127.0.0.1" }, () => {
+    server.listen(port, "127.0.0.1", () => {
       console.log(
         `\n🚀 React Scanner UI is running at http://localhost:${port}\n`,
       );
       console.log("   ➜  Hot Module Replacement enabled");
       console.log("   ➜  Press Ctrl+C to stop the server.\n");
-      resolve();
+      resolvePromise();
     });
   });
 }
