@@ -18,9 +18,12 @@
   "scripts": {
     "build": "tsc",
     "build:ui": "vite build --config ui/vite.config.ts",
+    "build:docs": "vitepress build docs",
     "start": "node dist/index.js",
     "dev": "ts-node src/index.ts",
     "dev:ui": "vite --config ui/vite.config.ts",
+    "dev:docs": "vitepress dev docs",
+    "preview:docs": "vitepress preview docs",
     "prepublishOnly": "yarn build",
     "publish:npm": "yarn build && npm publish",
     "prepare": "husky",
@@ -54,7 +57,8 @@
     "lint-staged": "^16.2.7",
     "prettier": "^3.7.4",
     "ts-node": "^10.9.2",
-    "typescript": "^5.9.3"
+    "typescript": "^5.9.3",
+    "vitepress": "^1.6.4"
   },
   "lint-staged": {
     "*.{ts,tsx,js,jsx}": [

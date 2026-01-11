@@ -77,6 +77,14 @@ export default [
     },
   },
   {
-    ignores: ['dist/', 'node_modules/', 'build/', '*.min.js', '*.min.css'],
+    ignores: [
+      'dist/',
+      'node_modules/',
+      'build/',
+      '*.min.js',
+      '*.min.css',
+      'docs/.vitepress/dist/',
+      'docs/.vitepress/cache/',
+    ],
   },
 ];
