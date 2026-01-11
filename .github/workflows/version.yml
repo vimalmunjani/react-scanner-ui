@@ -4,6 +4,12 @@ on:
   push:
     branches:
       - main
+    paths:
+      - 'src/**'
+      - 'ui/**'
+      - 'yarn.lock'
+      - 'package.json'
+  workflow_dispatch: # Allow manual triggering
 
 permissions:
   contents: write
@@ -11,7 +17,8 @@ permissions:
 jobs:
   version:
     runs-on: ubuntu-latest
-
+    # This workflow only runs when source code, UI, or dependencies change
+    # to avoid unnecessary version bumps for docs-only changes
     steps:
       - name: Checkout
         uses: actions/checkout@v4
