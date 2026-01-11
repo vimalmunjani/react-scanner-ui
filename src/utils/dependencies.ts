@@ -1,8 +1,9 @@
 import { existsSync, readFileSync } from 'fs';
-import { execSync } from 'child_process';
-import { createInterface } from 'readline';
+import { spawn } from 'child_process';
+import { confirm } from '@inquirer/prompts';
 import { createRequire } from 'module';
 import * as logger from './logger.js';
+import { inquirerTheme } from './logger.js';
 
 // ESM equivalent of require.resolve
 const require = createRequire(import.meta.url);
@@ -29,53 +30,89 @@ export function checkPeerDependency(): boolean {
 }
 
 export async function promptInstallReactScanner(): Promise<boolean> {
-  const rl = createInterface({
-    input: process.stdin,
-    output: process.stdout,
+  logger.warning('react-scanner is required but not installed.');
+
+  const shouldInstall = await confirm({
+    message: 'Would you like to install it now?',
+    default: true,
+    theme: inquirerTheme,
   });
 
-  return new Promise(resolve => {
-    logger.warning('react-scanner is required but not installed.');
-    rl.question(`  Would you like to install it now? (Y/n): `, answer => {
-      rl.close();
-      resolve(
-        answer.toLowerCase() === 'y' ||
-          answer.toLowerCase() === 'yes' ||
-          answer === ''
-      );
-    });
-  });
+  return shouldInstall;
 }
 
-export function installReactScanner(): void {
-  logger.startSpinner('Installing react-scanner...');
-  try {
-    const useYarn = existsSync('yarn.lock');
-    let isWorkspace = false;
+export async function installReactScanner(): Promise<void> {
+  const spinner = logger.startSpinner('Installing react-scanner...');
 
-    if (existsSync('package.json')) {
-      const packageContent = readFileSync('package.json', 'utf-8');
-      const packageJson = JSON.parse(packageContent);
-      if (packageJson.workspaces) {
-        isWorkspace = true;
-      }
+  const useYarn = existsSync('yarn.lock');
+  let isWorkspace = false;
+
+  if (existsSync('package.json')) {
+    const packageContent = readFileSync('package.json', 'utf-8');
+    const packageJson = JSON.parse(packageContent);
+    if (packageJson.workspaces) {
+      isWorkspace = true;
     }
-
-    let command;
-    if (useYarn) {
-      command = `yarn add react-scanner --dev --ignore-engines${isWorkspace ? ' -W' : ''}`;
-    } else {
-      command = 'npm install react-scanner --save-dev';
-    }
-
-    execSync(command, { stdio: 'pipe' });
-    logger.spinnerSuccess('react-scanner installed successfully!');
-  } catch {
-    logger.spinnerError('Failed to install react-scanner');
-    logger.errorBox(
-      'Installation Failed',
-      'Could not install react-scanner automatically.\nPlease install it manually and try again.'
-    );
-    process.exit(1);
   }
+
+  let command: string;
+  let args: string[];
+
+  if (useYarn) {
+    command = 'yarn';
+    args = ['add', 'react-scanner', '--dev', '--ignore-engines'];
+    if (isWorkspace) {
+      args.push('-W');
+    }
+  } else {
+    command = 'npm';
+    args = ['install', 'react-scanner', '--save-dev'];
+  }
+
+  return new Promise((resolve, reject) => {
+    const child = spawn(command, args, {
+      stdio: 'pipe',
+    });
+
+    // Handle SIGINT (Ctrl+C)
+    const handleSignal = () => {
+      child.kill('SIGTERM');
+      logger.spinnerError('Installation cancelled');
+      process.exit(1);
+    };
+
+    process.on('SIGINT', handleSignal);
+    process.on('SIGTERM', handleSignal);
+
+    child.on('close', code => {
+      // Remove signal handlers
+      process.off('SIGINT', handleSignal);
+      process.off('SIGTERM', handleSignal);
+
+      if (code === 0) {
+        logger.spinnerSuccess('react-scanner installed successfully!');
+        resolve();
+      } else {
+        logger.spinnerError('Failed to install react-scanner');
+        logger.errorBox(
+          'Installation Failed',
+          'Could not install react-scanner automatically.\nPlease install it manually and try again.'
+        );
+        reject(new Error(`Installation failed with code ${code}`));
+      }
+    });
+
+    child.on('error', err => {
+      // Remove signal handlers
+      process.off('SIGINT', handleSignal);
+      process.off('SIGTERM', handleSignal);
+
+      spinner.fail('Failed to install react-scanner');
+      logger.errorBox(
+        'Installation Failed',
+        `Could not install react-scanner automatically.\n${err.message}\nPlease install it manually and try again.`
+      );
+      reject(err);
+    });
+  });
 }

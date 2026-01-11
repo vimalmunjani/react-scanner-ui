@@ -1,10 +1,13 @@
 import { Command } from 'commander';
+import { input } from '@inquirer/prompts';
 import {
   isReactScannerInstalled,
   promptInstallReactScanner,
   installReactScanner,
   createReactScannerConfig,
+  updateIgnoreFiles,
   logger,
+  inquirerTheme,
 } from '../utils/index.js';
 
 export function initCommand(program: Command): void {
@@ -12,12 +15,15 @@ export function initCommand(program: Command): void {
     .command('init')
     .description('Initialize react-scanner configuration')
     .action(async () => {
-      logger.infoBox('React Scanner UI', 'Initializing your project...');
+      logger.infoBox(
+        'Welcome to React Scanner UI',
+        'Initializing your project...'
+      );
 
       if (!isReactScannerInstalled()) {
         const shouldInstall = await promptInstallReactScanner();
         if (shouldInstall) {
-          installReactScanner();
+          await installReactScanner();
         } else {
           logger.errorBox(
             'Installation Required',
@@ -26,7 +32,36 @@ export function initCommand(program: Command): void {
           process.exit(1);
         }
       }
-      createReactScannerConfig();
+
+      // Prompt for crawlFrom
+      logger.info(
+        `${logger.bgHighlight('crawlFrom')} The directory where react-scanner will start crawling for React components.`
+      );
+      logger.dim('This is typically your source folder (e.g., ./src, ./app).');
+
+      const crawlFrom = await input({
+        message: 'Enter the path to crawl from:',
+        default: './src',
+        theme: inquirerTheme,
+      });
+
+      // Prompt for importedFrom
+      logger.info(
+        `${logger.bgHighlight('importedFrom')} The package or path that components are imported from.`
+      );
+      logger.dim(
+        'This filters which components to track (e.g., @mui/material, @chakra-ui/react, ./components).'
+      );
+
+      const importedFrom = await input({
+        message: 'Enter the import source to track:',
+        default: '@mui/material',
+        theme: inquirerTheme,
+      });
+
+      createReactScannerConfig({ crawlFrom, importedFrom });
+      updateIgnoreFiles();
+
       logger.successBox(
         'Initialization Complete',
         'Your project is now configured for React Scanner UI.\nRun ' +

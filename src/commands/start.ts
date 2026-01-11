@@ -1,9 +1,9 @@
 import { Command } from 'commander';
-import { createInterface } from 'readline';
+import { confirm } from '@inquirer/prompts';
 import { checkPeerDependency } from '../utils/dependencies.js';
 import { getServerPort } from '../utils/port.js';
 import { startServer } from '../server/index.js';
-import { logger } from '../utils/index.js';
+import { logger, inquirerTheme } from '../utils/index.js';
 
 const DEFAULT_PORT = 3000;
 
@@ -14,29 +14,17 @@ async function promptForPortChange(
   requestedPort: number,
   availablePort: number
 ): Promise<boolean> {
-  const rl = createInterface({
-    input: process.stdin,
-    output: process.stdout,
+  logger.warning(
+    `Port ${logger.bold(String(requestedPort))} is not available.`
+  );
+
+  const shouldChangePort = await confirm({
+    message: `Would you like to run on port ${availablePort} instead?`,
+    default: true,
+    theme: inquirerTheme,
   });
 
-  return new Promise(resolve => {
-    logger.warning(
-      `Port ${logger.bold(String(requestedPort))} is not available.`
-    );
-    rl.question(
-      `  Would you like to run on port ${logger.bold(String(availablePort))} instead? (Y/n): `,
-      answer => {
-        rl.close();
-        const normalizedAnswer = answer.trim().toLowerCase();
-        // Default to yes if user just presses enter
-        resolve(
-          normalizedAnswer === '' ||
-            normalizedAnswer === 'y' ||
-            normalizedAnswer === 'yes'
-        );
-      }
-    );
-  });
+  return shouldChangePort;
 }
 
 /**

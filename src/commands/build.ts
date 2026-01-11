@@ -1,9 +1,13 @@
 import { Command } from 'commander';
-import { resolve, dirname } from 'path';
+import { resolve, dirname, basename } from 'path';
 import { fileURLToPath } from 'url';
 import { writeFileSync, mkdirSync, existsSync } from 'fs';
 import { checkPeerDependency } from '../utils/dependencies.js';
-import { getScanData } from '../utils/scannerConfig.js';
+import {
+  getScanData,
+  readScannerConfig,
+  getOutputFile,
+} from '../utils/scannerConfig.js';
 import { logger } from '../utils/index.js';
 
 // ESM equivalent of __dirname
@@ -63,6 +67,11 @@ async function runBuild(): Promise<void> {
     mkdirSync(outputDir, { recursive: true });
   }
 
+  // Get the scan data file name from config
+  const config = await readScannerConfig();
+  const scanFile = config ? getOutputFile(config) : null;
+  const scanFileName = scanFile ? basename(scanFile) : 'scan-data.json';
+
   try {
     await build({
       root: uiRoot,
@@ -87,9 +96,9 @@ async function runBuild(): Promise<void> {
 
   logger.spinnerSuccess('UI built successfully');
 
-  // Step 3: Write the scan data as a JSON file
+  // Step 3: Write the scan data as a JSON file (using same filename from config)
   logger.startSpinner('Embedding scan data...');
-  const scanDataPath = resolve(outputDir, 'scan-data.json');
+  const scanDataPath = resolve(outputDir, scanFileName);
   writeFileSync(
     scanDataPath,
     JSON.stringify({ data: scanResult.data, error: null }, null, 2)
@@ -108,7 +117,7 @@ async function runBuild(): Promise<void> {
       const originalFetch = window.fetch;
       window.fetch = async function(url, options) {
         if (url === '/api/scan-data' || url.endsWith('/api/scan-data')) {
-          const response = await originalFetch('./scan-data.json', options);
+          const response = await originalFetch('./${scanFileName}', options);
           return response;
         }
         return originalFetch(url, options);

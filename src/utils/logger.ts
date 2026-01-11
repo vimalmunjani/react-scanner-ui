@@ -1,6 +1,8 @@
 import pc from 'picocolors';
-import boxen from 'boxen';
+import boxen, { type Options as BoxenOptions } from 'boxen';
 import ora, { type Ora } from 'ora';
+import type { Theme } from '@inquirer/core';
+import type { PartialDeep } from '@inquirer/type';
 
 /**
  * Beautiful logger utility using boxen, picocolors, and ora
@@ -8,6 +10,28 @@ import ora, { type Ora } from 'ora';
 
 // Spinner instance for loading states
 let currentSpinner: Ora | null = null;
+
+// Consistent box width for all boxes
+const BOX_WIDTH = 60;
+
+// Indentation to align with box border (margin of 1 = 3 spaces)
+const INDENT = '   ';
+
+// Default box options for consistency
+const defaultBoxOptions: BoxenOptions = {
+  padding: 1,
+  margin: 1,
+  borderStyle: 'round',
+  width: BOX_WIDTH,
+};
+
+// Inquirer theme with proper indentation
+export const inquirerTheme: PartialDeep<Theme> = {
+  prefix: {
+    idle: `${INDENT}${pc.cyan('?')}`,
+    done: `${INDENT}${pc.green('✔')}`,
+  },
+};
 
 /**
  * Display a styled info box
@@ -18,9 +42,7 @@ export function infoBox(title: string, content?: string): void {
     : pc.bold(pc.cyan(title));
   console.log(
     boxen(message, {
-      padding: 1,
-      margin: 1,
-      borderStyle: 'round',
+      ...defaultBoxOptions,
       borderColor: 'cyan',
     })
   );
@@ -35,9 +57,7 @@ export function successBox(title: string, content?: string): void {
     : pc.bold(pc.green(title));
   console.log(
     boxen(message, {
-      padding: 1,
-      margin: 1,
-      borderStyle: 'round',
+      ...defaultBoxOptions,
       borderColor: 'green',
     })
   );
@@ -52,9 +72,7 @@ export function errorBox(title: string, content?: string): void {
     : pc.bold(pc.red(title));
   console.log(
     boxen(message, {
-      padding: 1,
-      margin: 1,
-      borderStyle: 'round',
+      ...defaultBoxOptions,
       borderColor: 'red',
     })
   );
@@ -69,9 +87,7 @@ export function warningBox(title: string, content?: string): void {
     : pc.bold(pc.yellow(title));
   console.log(
     boxen(message, {
-      padding: 1,
-      margin: 1,
-      borderStyle: 'round',
+      ...defaultBoxOptions,
       borderColor: 'yellow',
     })
   );
@@ -81,49 +97,49 @@ export function warningBox(title: string, content?: string): void {
  * Log a success message with a checkmark
  */
 export function success(message: string): void {
-  console.log(`${pc.green('✔')} ${pc.green(message)}`);
+  console.log(`${INDENT}${pc.green('✔')} ${pc.green(message)}`);
 }
 
 /**
  * Log an error message with an X
  */
 export function error(message: string): void {
-  console.log(`${pc.red('✖')} ${pc.red(message)}`);
+  console.log(`${INDENT}${pc.red('✖')} ${pc.red(message)}`);
 }
 
 /**
  * Log a warning message
  */
 export function warning(message: string): void {
-  console.log(`${pc.yellow('⚠')} ${pc.yellow(message)}`);
+  console.log(`${INDENT}${pc.yellow('⚠')} ${pc.yellow(message)}`);
 }
 
 /**
  * Log an info message
  */
 export function info(message: string): void {
-  console.log(`${pc.cyan('ℹ')} ${pc.cyan(message)}`);
+  console.log(`${INDENT}${pc.cyan('ℹ')} ${pc.cyan(message)}`);
 }
 
 /**
  * Log a step/bullet point
  */
 export function step(message: string): void {
-  console.log(`  ${pc.dim('➜')} ${message}`);
+  console.log(`${INDENT}  ${pc.dim('➜')} ${message}`);
 }
 
 /**
  * Log a highlighted message
  */
 export function highlight(message: string): void {
-  console.log(pc.bold(pc.magenta(message)));
+  console.log(`${INDENT}${pc.bold(pc.magenta(message))}`);
 }
 
 /**
  * Log a dimmed/subtle message
  */
 export function dim(message: string): void {
-  console.log(pc.dim(message));
+  console.log(`${INDENT}${pc.dim(message)}`);
 }
 
 /**
@@ -141,6 +157,13 @@ export function bold(text: string): string {
 }
 
 /**
+ * Format text with background highlight (e.g., for "Tip:", "Note:", etc.)
+ */
+export function bgHighlight(text: string): string {
+  return pc.bgYellow(pc.black(pc.bold(` ${text} `)));
+}
+
+/**
  * Start a spinner with a message
  */
 export function startSpinner(message: string): Ora {
@@ -150,6 +173,7 @@ export function startSpinner(message: string): Ora {
   currentSpinner = ora({
     text: message,
     color: 'cyan',
+    indent: 3,
   }).start();
   return currentSpinner;
 }
@@ -221,9 +245,7 @@ export function banner(name: string, version?: string): void {
   const title = `${pc.bold(pc.cyan(name))} ${versionText}`;
   console.log(
     boxen(title, {
-      padding: 1,
-      margin: 1,
-      borderStyle: 'double',
+      ...defaultBoxOptions,
       borderColor: 'cyan',
     })
   );
@@ -242,11 +264,9 @@ export function serverInfo(port: number, features: string[] = []): void {
 
   console.log(
     boxen(content, {
-      padding: 1,
-      margin: 1,
-      borderStyle: 'round',
+      ...defaultBoxOptions,
       borderColor: 'green',
-      title: pc.bold(pc.green('🚀 Server Running')),
+      title: pc.bold(pc.green('🚀 React Scanner UI: Server Running')),
       titleAlignment: 'center',
     })
   );
@@ -271,9 +291,7 @@ export function buildComplete(
 
   console.log(
     boxen(content, {
-      padding: 1,
-      margin: 1,
-      borderStyle: 'round',
+      ...defaultBoxOptions,
       borderColor: 'green',
       title: pc.bold(pc.green('✔ Build Complete')),
       titleAlignment: 'center',
@@ -288,9 +306,7 @@ export function errorWithDetails(title: string, details: string[]): void {
   const content = details.map(d => `${pc.dim('•')} ${d}`).join('\n');
   console.log(
     boxen(`${pc.bold(pc.red(title))}\n\n${content}`, {
-      padding: 1,
-      margin: 1,
-      borderStyle: 'round',
+      ...defaultBoxOptions,
       borderColor: 'red',
     })
   );
@@ -308,9 +324,7 @@ export function installInstructions(packageName: string): void {
 
   console.log(
     boxen(content, {
-      padding: 1,
-      margin: 1,
-      borderStyle: 'round',
+      ...defaultBoxOptions,
       borderColor: 'yellow',
       title: pc.bold(pc.yellow('📦 Install Required')),
       titleAlignment: 'center',

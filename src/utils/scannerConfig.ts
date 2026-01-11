@@ -65,7 +65,22 @@ export function getOutputFile(config: ScannerConfig): string | null {
 }
 
 /**
+ * Check if the parsed data is in wrapped format { data, error }
+ */
+function isWrappedFormat(
+  parsed: unknown
+): parsed is { data: ScanData | null; error: string | null } {
+  return (
+    typeof parsed === 'object' &&
+    parsed !== null &&
+    'data' in parsed &&
+    'error' in parsed
+  );
+}
+
+/**
  * Read and parse the scan data from a JSON file
+ * Handles both raw format (from react-scanner) and wrapped format (from build)
  */
 export function readScanData(filePath: string): ScanData | null {
   const absolutePath = resolve(process.cwd(), filePath);
@@ -80,7 +95,15 @@ export function readScanData(filePath: string): ScanData | null {
 
   try {
     const content = readFileSync(absolutePath, 'utf-8');
-    return JSON.parse(content);
+    const parsed = JSON.parse(content);
+
+    // Handle wrapped format { data, error } from build command
+    if (isWrappedFormat(parsed)) {
+      return parsed.data;
+    }
+
+    // Handle raw format from react-scanner
+    return parsed;
   } catch (error) {
     logger.errorBox('Parse Error', `Failed to read scan data: ${error}`);
     return null;
