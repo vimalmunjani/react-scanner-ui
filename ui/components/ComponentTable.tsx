@@ -19,6 +19,7 @@ export function ComponentTable({ data }: ComponentTableProps) {
     key: "count",
     direction: "desc",
   });
+  const [expandedRows, setExpandedRows] = useState<Set<string>>(new Set());
 
   const handleSort = (key: SortKey) => {
     setSortConfig((prev) => ({
@@ -32,10 +33,23 @@ export function ComponentTable({ data }: ComponentTableProps) {
     return sortConfig.direction === "asc" ? "▲" : "▼";
   };
 
+  const toggleRow = (name: string) => {
+    setExpandedRows((prev) => {
+      const next = new Set(prev);
+      if (next.has(name)) {
+        next.delete(name);
+      } else {
+        next.add(name);
+      }
+      return next;
+    });
+  };
+
   // Transform data into array and sort
   const components = Object.entries(data).map(([name, info]) => ({
     name,
-    count: info.instances || 0,
+    count: info.instances,
+    props: info.props || {},
   }));
 
   components.sort((a, b) => {
@@ -63,7 +77,7 @@ export function ComponentTable({ data }: ComponentTableProps) {
               <span className="sort-indicator">{getSortIndicator("name")}</span>
             </th>
             <th onClick={() => handleSort("count")}>
-              Count
+              Usage Count
               <span className="sort-indicator">
                 {getSortIndicator("count")}
               </span>
@@ -71,12 +85,50 @@ export function ComponentTable({ data }: ComponentTableProps) {
           </tr>
         </thead>
         <tbody>
-          {components.map((component) => (
-            <tr key={component.name}>
-              <td className="component-name">{component.name}</td>
-              <td className="count">{component.count}</td>
-            </tr>
-          ))}
+          {components.map((component) => {
+            const isExpanded = expandedRows.has(component.name);
+            const hasProps = Object.keys(component.props).length > 0;
+            const sortedProps = Object.entries(component.props).sort(
+              ([, a], [, b]) => b - a,
+            );
+
+            return (
+              <>
+                <tr
+                  key={component.name}
+                  onClick={() => toggleRow(component.name)}
+                  className={`clickable-row ${isExpanded ? "expanded" : ""} ${hasProps ? "has-props" : ""}`}
+                >
+                  <td className="component-name">
+                    <span
+                      className={`expand-icon ${isExpanded ? "expanded" : ""}`}
+                    >
+                      {hasProps ? "▶" : ""}
+                    </span>
+                    {component.name}
+                  </td>
+                  <td className="count">{component.count}</td>
+                </tr>
+                {isExpanded && hasProps && (
+                  <tr key={`${component.name}-props`} className="props-row">
+                    <td colSpan={2}>
+                      <div className="props-container">
+                        <span className="props-label">Props:</span>
+                        <div className="props-chips">
+                          {sortedProps.map(([propName, propCount]) => (
+                            <span key={propName} className="prop-chip">
+                              {propName}
+                              <span className="prop-count">{propCount}</span>
+                            </span>
+                          ))}
+                        </div>
+                      </div>
+                    </td>
+                  </tr>
+                )}
+              </>
+            );
+          })}
           <tr className="total-row">
             <td>Total</td>
             <td className="count">{totalCount}</td>
