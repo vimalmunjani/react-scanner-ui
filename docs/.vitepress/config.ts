@@ -6,6 +6,7 @@ export default defineConfig({
   base: '/react-scanner-ui/',
 
   themeConfig: {
+    logo: '/logo.png',
     nav: [
       { text: 'Home', link: '/' },
       { text: 'Guide', link: '/guide/' },

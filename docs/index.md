@@ -5,6 +5,9 @@ hero:
   name: 'React Scanner UI'
   text: 'Component Scanner & Visualization Tool'
   tagline: 'Scan, analyze, and visualize your React components with ease'
+  image:
+    src: /logo.png
+    alt: React Scanner UI Logo
   actions:
     - theme: brand
       text: Get Started

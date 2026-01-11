@@ -11,6 +11,7 @@
     "url": "git+https://github.com/vimalmunjani/react-scanner-ui.git"
   },
   "homepage": "https://vimalmunjani.github.io/react-scanner-ui/",
+  "logo": "logo.png",
   "author": "Vimal Munjani <vimal.j.munjani@gmail.com>",
   "license": "MIT",
   "publishConfig": {

@@ -1,6 +1,10 @@
-# React Scanner UI
+<div align="center">
+  <img src="./logo.png" alt="React Scanner UI Logo" width="100" height="100">
+  
+  # React Scanner UI
 
-> Component scanner and visualization tool for React applications
+  ## Component scanner and visualization tool for React applications
+</div>
 
 [![npm version](https://badge.fury.io/js/react-scanner-ui.svg)](https://badge.fury.io/js/react-scanner-ui)
 [![GitHub stars](https://img.shields.io/github/stars/vimalmunjani/react-scanner-ui?style=social)](https://github.com/vimalmunjani/react-scanner-ui/stargazers)
