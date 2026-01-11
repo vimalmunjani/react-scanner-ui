@@ -9,17 +9,11 @@
     "react-components",
     "design-system",
     "design-system-observability",
-    "component",
-    "component-usage",
-    "component-analytics",
-    "component-insights",
-    "component-metrics",
-    "statistics",
-    "usage-analytics",
+    "usage",
+    "analytics",
+    "insights",
     "codebase-analysis",
-    "dashboard",
-    "visualization",
-    "ui"
+    "dashboard"
   ],
   "bin": {
     "react-scanner-ui": "dist/index.js"
