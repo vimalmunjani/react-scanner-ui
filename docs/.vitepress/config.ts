@@ -46,5 +46,15 @@ export default defineConfig({
     },
   },
 
-  head: [['link', { rel: 'icon', href: '/react-scanner-ui/favicon.ico' }]],
+  head: [
+    ['link', { rel: 'icon', href: '/react-scanner-ui/favicon.ico' }],
+    [
+      'script',
+      {
+        async: '',
+        src: 'https://cloud.umami.is/script.js',
+        'data-website-id': '189fe392-f9a9-458c-bf3b-b954d279af56',
+      },
+    ],
+  ],
 });
