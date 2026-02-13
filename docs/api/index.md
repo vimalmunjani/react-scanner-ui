@@ -2,7 +2,7 @@
 
 ## CLI Commands
 
-### `react-scanner-ui`
+### `react-scanner-studio`
 
 Main command to start the component scanner.
 

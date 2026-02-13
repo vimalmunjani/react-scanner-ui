@@ -1,6 +1,6 @@
 # Getting Started
 
-React Scanner UI is a tool for scanning and visualizing React components in your project.
+React Scanner Studio is a tool for scanning and visualizing React components in your project.
 
 ## Quick Start
 

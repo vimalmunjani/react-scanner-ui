@@ -25,7 +25,7 @@ export async function readScannerConfig(): Promise<ScannerConfig | null> {
   if (!existsSync(configPath)) {
     logger.errorBox(
       'Configuration Not Found',
-      `${logger.bold('react-scanner.config.js')} not found.\nRun ${logger.bold('react-scanner-ui init')} first to create the configuration.`
+      `${logger.bold('react-scanner.config.js')} not found.\nRun ${logger.bold('react-scanner-studio init')} first to create the configuration.`
     );
     return null;
   }

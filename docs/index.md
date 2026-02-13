@@ -2,19 +2,19 @@
 layout: home
 
 hero:
-  name: 'React Scanner UI'
+  name: 'React Scanner Studio'
   text: 'Component Scanner & Visualization Tool'
   tagline: 'v1.0.0 launching February 14th, 2025 — Scan, analyze, and visualize your React components with ease'
   image:
     src: /logo.png
-    alt: React Scanner UI Logo
+    alt: React Scanner Studio Logo
   actions:
     - theme: brand
       text: Get Started
       link: /guide/
     - theme: alt
       text: View on GitHub
-      link: https://github.com/vimalmunjani/react-scanner-ui
+      link: https://github.com/vimalmunjani/react-scanner-studio
 
 features:
   - title: Component Scanning

@@ -1,6 +1,6 @@
 # GitHub Actions Workflows
 
-This directory contains the automated workflows for the React Scanner UI project. Each workflow is optimized to run only when relevant files change, improving CI/CD efficiency.
+This directory contains the automated workflows for the React Scanner Studio project. Each workflow is optimized to run only when relevant files change, improving CI/CD efficiency.
 
 ## Workflows Overview
 

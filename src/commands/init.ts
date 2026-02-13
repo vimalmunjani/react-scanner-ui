@@ -16,7 +16,7 @@ export function initCommand(program: Command): void {
     .description('Initialize react-scanner configuration')
     .action(async () => {
       logger.infoBox(
-        'Welcome to React Scanner UI',
+        'Welcome to React Scanner Studio',
         'Initializing your project...'
       );
 
@@ -64,8 +64,8 @@ export function initCommand(program: Command): void {
 
       logger.successBox(
         'Initialization Complete',
-        'Your project is now configured for React Scanner UI.\nRun ' +
-          logger.bold('react-scanner-ui start') +
+        'Your project is now configured for React Scanner Studio.\nRun ' +
+          logger.bold('react-scanner-studio start') +
           ' to begin.'
       );
     });

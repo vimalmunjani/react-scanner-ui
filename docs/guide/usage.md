@@ -5,7 +5,7 @@
 Run the scanner in your React project directory:
 
 ```bash
-react-scanner-ui
+react-scanner-studio
 ```
 
 ## Options

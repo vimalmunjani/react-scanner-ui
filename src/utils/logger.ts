@@ -266,7 +266,7 @@ export function serverInfo(port: number, features: string[] = []): void {
     boxen(content, {
       ...defaultBoxOptions,
       borderColor: 'green',
-      title: pc.bold(pc.green('🚀 React Scanner UI: Server Running')),
+      title: pc.bold(pc.green('🚀 React Scanner Studio: Server Running')),
       titleAlignment: 'center',
     })
   );

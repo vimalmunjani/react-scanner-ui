@@ -38,7 +38,7 @@ function App() {
 
   return (
     <div className='container'>
-      <h1>React Scanner UI</h1>
+      <h1>React Scanner Studio</h1>
       {loading && <div className='loading'>Loading scan data...</div>}
       {error && <div className='error'>{error}</div>}
       {!loading && !error && data && <ComponentTable data={data} />}

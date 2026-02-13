@@ -2,8 +2,8 @@ import { writeFileSync, existsSync, readFileSync, appendFileSync } from 'fs';
 import { join } from 'path';
 import * as logger from './logger.js';
 
-const IGNORE_ENTRY = '.react-scanner-ui/';
-const IGNORE_COMMENT = '# React Scanner UI';
+const IGNORE_ENTRY = '.react-scanner-studio/';
+const IGNORE_COMMENT = '# React Scanner Studio';
 
 interface IgnoreFileConfig {
   filename: string;
@@ -17,7 +17,7 @@ const IGNORE_FILES: IgnoreFileConfig[] = [
 ];
 
 /**
- * Check if an ignore file already contains the react-scanner-ui entry
+ * Check if an ignore file already contains the react-scanner-studio entry
  */
 function hasIgnoreEntry(filePath: string): boolean {
   if (!existsSync(filePath)) {
@@ -29,7 +29,7 @@ function hasIgnoreEntry(filePath: string): boolean {
 }
 
 /**
- * Add react-scanner-ui entry to an ignore file
+ * Add react-scanner-studio entry to an ignore file
  */
 function addIgnoreEntry(filePath: string): boolean {
   try {
@@ -50,7 +50,7 @@ function addIgnoreEntry(filePath: string): boolean {
 }
 
 /**
- * Update all ignore files to exclude .react-scanner-ui/
+ * Update all ignore files to exclude .react-scanner-studio/
  */
 export function updateIgnoreFiles(): void {
   const cwd = process.cwd();
@@ -107,7 +107,7 @@ export function createReactScannerConfig(options: ScannerConfigOptions): void {
   includeSubComponents: true,
   importedFrom: '${options.importedFrom}',
   processors: [
-    ['count-components-and-props', { outputTo: './.react-scanner-ui/scan-report.json' }],
+    ['count-components-and-props', { outputTo: './.react-scanner-studio/scan-report.json' }],
   ],
 };
 `;

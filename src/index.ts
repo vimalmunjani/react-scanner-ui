@@ -11,7 +11,7 @@ import {
 const program = new Command();
 
 program
-  .name('react-scanner-ui')
+  .name('react-scanner-studio')
   .description('A CLI application built with Commander.js')
   .version('1.0.0');
 

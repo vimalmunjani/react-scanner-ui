@@ -1,6 +1,6 @@
 # Documentation
 
-This directory contains the VitePress documentation for React Scanner UI.
+This directory contains the VitePress documentation for React Scanner Studio.
 
 ## Development
 

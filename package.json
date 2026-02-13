@@ -1,5 +1,5 @@
 {
-  "name": "react-scanner-ui",
+  "name": "react-scanner-studio",
   "type": "module",
   "version": "0.0.22",
   "main": "dist/index.js",
@@ -16,13 +16,13 @@
     "dashboard"
   ],
   "bin": {
-    "react-scanner-ui": "dist/index.js"
+    "react-scanner-studio": "dist/index.js"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/vimalmunjani/react-scanner-ui.git"
+    "url": "git+https://github.com/vimalmunjani/react-scanner-studio.git"
   },
-  "homepage": "https://vimalmunjani.github.io/react-scanner-ui/",
+  "homepage": "https://react-scanner-studio/",
   "logo": "logo.png",
   "author": "Vimal Munjani <vimal.j.munjani@gmail.com>",
   "license": "MIT",

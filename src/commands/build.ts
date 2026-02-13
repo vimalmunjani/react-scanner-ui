@@ -28,13 +28,16 @@ function getUiRoot(): string {
 }
 
 /**
- * Build the React Scanner UI and output to consumer's .react-scanner-ui/ folder
+ * Build the React Scanner Studio and output to consumer's .react-scanner-studio/ folder
  */
 async function runBuild(): Promise<void> {
   const consumerRoot = process.cwd();
-  const outputDir = resolve(consumerRoot, '.react-scanner-ui');
+  const outputDir = resolve(consumerRoot, '.react-scanner-studio');
 
-  logger.infoBox('React Scanner UI', 'Building static files for production...');
+  logger.infoBox(
+    'React Scanner Studio',
+    'Building static files for production...'
+  );
 
   // Step 1: Get the scan data
   logger.startSpinner('Reading scan data...');
@@ -139,7 +142,7 @@ export function buildCommand(program: Command): void {
   program
     .command('build')
     .description(
-      'Build the React Scanner UI as static files to .react-scanner-ui/'
+      'Build the React Scanner Studio as static files to .react-scanner-studio/'
     )
     .action(async () => {
       checkPeerDependency();

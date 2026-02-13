@@ -1,7 +1,7 @@
 import { defineConfig } from 'vitepress';
 
 export default defineConfig({
-  title: 'React Scanner UI',
+  title: 'React Scanner Studio',
   description: 'A React component scanner and visualization tool',
   base: '/',
 
@@ -31,7 +31,7 @@ export default defineConfig({
     socialLinks: [
       {
         icon: 'github',
-        link: 'https://github.com/vimalmunjani/react-scanner-ui',
+        link: 'https://github.com/vimalmunjani/react-scanner-studio',
       },
       {
         icon: 'linkedin',
@@ -47,7 +47,7 @@ export default defineConfig({
   },
 
   head: [
-    ['link', { rel: 'icon', href: '/react-scanner-ui/favicon.ico' }],
+    ['link', { rel: 'icon', href: '/react-scanner-studio/favicon.ico' }],
     [
       'script',
       {

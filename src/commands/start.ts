@@ -63,7 +63,7 @@ async function openBrowser(url: string): Promise<void> {
 export function startCommand(program: Command): void {
   program
     .command('start')
-    .description('Start the React Scanner UI server')
+    .description('Start the React Scanner Studio server')
     .option(
       '-p, --port <number>',
       'Port to run the server on',
