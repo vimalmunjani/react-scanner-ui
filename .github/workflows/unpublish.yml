@@ -1,0 +1,29 @@
+name: Unpublish npm versions
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  id-token: write
+
+jobs:
+  unpublish:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 24
+          registry-url: 'https://registry.npmjs.org'
+
+      - name: Unpublish versions 0.0.22 and 0.0.23
+        run: |
+          npm unpublish react-scanner-studio@0.0.22 || echo "Failed to unpublish 0.0.22 (may already be removed or past 72hr window)"
+          npm unpublish react-scanner-studio@0.0.23 || echo "Failed to unpublish 0.0.23 (may already be removed or past 72hr window)"
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+
+      - name: Verify removal
+        run: npm view react-scanner-studio versions --json || true
