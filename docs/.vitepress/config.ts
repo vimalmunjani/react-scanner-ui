@@ -3,7 +3,7 @@ import { defineConfig } from 'vitepress';
 export default defineConfig({
   title: 'React Scanner UI',
   description: 'A React component scanner and visualization tool',
-  base: '/react-scanner-ui/',
+  base: '/',
 
   themeConfig: {
     logo: '/logo.png',
