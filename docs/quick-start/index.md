@@ -53,10 +53,6 @@ npm run scan:start
 npm run scan:build
 ```
 
-::: tip Automatic Scan Detection
-The `start` and `build` commands automatically detect if a scan report exists. If one is found, you'll be asked whether to use it or generate a fresh one.
-:::
-
 ## What's Next?
 
 - [CLI Commands](/cli/) — Learn about all available commands and options

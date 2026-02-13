@@ -47,8 +47,8 @@ This guide covers common issues you may encounter when using React Scanner Studi
 
 **Solution:**
 
-1. Run `npx react-scanner` to scan your codebase
-2. Verify that the `outputTo` path in your config matches what React Scanner Studio expects
+1. Run `npx react-scanner-studio scan` to scan your codebase
+2. Or simply run `npx react-scanner-studio start` — it will automatically prompt you to generate a scan report
 
 ---
 
@@ -271,7 +271,7 @@ If you're still experiencing issues:
 
 3. **Join the Community**
    - [GitHub Discussions](https://github.com/vimalmunjani/react-scanner-studio/discussions)
-   - [Discord](https://discord.gg/D7n5c7bj)
+   - [Discord](https://discord.gg/PU5xrNVd)
 
 ## See Also
 

@@ -97,12 +97,14 @@ fi
 
 ### Build fails with "Scan Data Not Found"
 
-Make sure to run `react-scanner` before `react-scanner-studio build`:
+Make sure to run `react-scanner-studio scan` before building in CI mode:
 
 ```bash
-npx react-scanner
-npx react-scanner-studio build
+npx react-scanner-studio scan
+npx react-scanner-studio build --ci
 ```
+
+Alternatively, the `build` command without `--ci` will prompt you to generate a report if one doesn't exist.
 
 ### Port conflicts in CI
 

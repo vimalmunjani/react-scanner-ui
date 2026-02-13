@@ -35,17 +35,17 @@ react-scanner-studio <command> --help  # Display help for a specific command
 # Show help
 npx react-scanner-studio --help
 
-# Initialize configuration
+# Initialize configuration (one-time setup)
 npx react-scanner-studio init
 
-# Scan your codebase
-npx react-scanner-studio scan
-
-# Start the dashboard server
+# Start the dashboard server (will prompt to scan if needed)
 npx react-scanner-studio start
 
-# Build static files
+# Build static files (will prompt to scan if needed)
 npx react-scanner-studio build
+
+# Manually scan your codebase (optional - start/build handle this automatically)
+npx react-scanner-studio scan
 ```
 
 ## Command Flow
@@ -62,19 +62,16 @@ The typical workflow follows this order:
          ▼
 ┌──────────────────┐
 │                  │
-│   2. scan        │  Generate scan data (run periodically)
-│                  │
-└────────┬─────────┘
-         │
-         ▼
-┌──────────────────┐
-│                  │
-│   3. start       │  View interactive dashboard (development)
-│      - or -      │
-│   4. build       │  Generate static files (production/sharing)
+│   2. start       │  View interactive dashboard (development)
+│      - or -      │  (automatically prompts to scan if needed)
+│   3. build       │  Generate static files (production/sharing)
 │                  │
 └──────────────────┘
 ```
+
+::: tip Streamlined Workflow
+You don't need to manually run `scan` before `start` or `build`. These commands automatically detect if a scan report exists and prompt you to generate one if it's missing.
+:::
 
 ## Exit Codes
 

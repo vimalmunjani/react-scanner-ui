@@ -3,7 +3,7 @@ import { defineConfig } from 'vitepress';
 export default defineConfig({
   title: 'React Scanner Studio',
   description:
-    'A dashboard generator that transforms react-scanner output into a portable, interactive component usage insights dashboard',
+    'A portable, interactive dashboard for analyzing React component usage across your codebase',
   base: '/',
 
   themeConfig: {

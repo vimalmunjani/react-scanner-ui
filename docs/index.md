@@ -4,7 +4,7 @@ layout: home
 hero:
   name: 'React Scanner Studio'
   text: 'Component Usage Insights Dashboard'
-  tagline: 'Transform your react-scanner output into a portable, interactive dashboard for analyzing React component usage across your codebase'
+  tagline: 'A portable, interactive dashboard for analyzing React component usage across your codebase'
   image:
     src: /logo.png
     alt: React Scanner Studio Logo
@@ -17,24 +17,24 @@ hero:
       link: https://demo.reactscanner.studio
 
 features:
-  - icon: 🔍
-    title: Component Scanning
-    details: Leverages react-scanner to automatically scan and analyze React component usage across your entire codebase.
-  - icon: 📊
+  - icon: ⚡
+    title: Up and Running in Seconds
+    details: One command to set up, one command to launch. No complex configuration required.
+  - icon: 🖥️
     title: Interactive Dashboard
     details: Beautiful, interactive UI for exploring component statistics, prop usage patterns, and adoption metrics.
   - icon: 📦
     title: Portable Build
     details: Generate static HTML files that can be hosted anywhere or shared with your team — no server required.
-  - icon: ⚡
-    title: Zero Config Setup
-    details: Get started in seconds with the init command that automatically configures react-scanner for your project.
-  - icon: 🎨
+  - icon: 📐
     title: Design System Tracking
-    details: Perfect for tracking design system component adoption across multiple projects and teams.
+    details: Measure how your design system is being used across teams and projects.
+  - icon: 🔍
+    title: Find Hidden Patterns
+    details: Uncover prop usage patterns, identify inconsistencies, and make data-driven decisions.
   - icon: 🔧
-    title: CI/CD Ready
-    details: Built-in CI mode for seamless integration with your continuous integration pipelines.
+    title: Automate with CI/CD
+    details: Generate reports automatically on every build with built-in CI mode.
 ---
 
 ## Why React Scanner Studio?
@@ -49,18 +49,18 @@ Understanding how components are used across a large codebase can be challenging
 ## Quick Example
 
 ```bash
-# Initialize configuration
+# Initialize configuration (one-time setup)
 npx react-scanner-studio init
-
-# Scan your codebase for component usage
-npx react-scanner-studio scan
 
 # Start the interactive dashboard
 npx react-scanner-studio start
+
+# Build static files for sharing (optional)
+npx react-scanner-studio build
 ```
 
 ## Community
 
 - ⭐ [Star on GitHub](https://github.com/vimalmunjani/react-scanner-studio)
 - 💬 [Join Discussions](https://github.com/vimalmunjani/react-scanner-studio/discussions)
-- 🎮 [Join Discord](https://discord.gg/D7n5c7bj)
+- 🎮 [Join Discord](https://discord.gg/PU5xrNVd)

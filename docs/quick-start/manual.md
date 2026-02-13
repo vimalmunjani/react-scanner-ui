@@ -142,17 +142,7 @@ Add these scripts to your `package.json` for convenience:
 }
 ```
 
-## Step 5: Run the Scanner
-
-Generate your first scan report:
-
-```bash
-npm run scan
-# or
-npx react-scanner-studio scan
-```
-
-## Step 6: Start the Dashboard
+## Step 5: Start the Dashboard
 
 Start the interactive dashboard:
 
@@ -162,9 +152,9 @@ npm run scan:start
 npx react-scanner-studio start
 ```
 
-The development server will start and automatically open your browser to `http://localhost:3000`.
+The development server will start at `http://localhost:3000`.
 
-## Step 7: Build for Sharing (Optional)
+## Step 6: Build for Sharing (Optional)
 
 To generate a portable, static version of the dashboard:
 

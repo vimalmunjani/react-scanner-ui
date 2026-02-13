@@ -65,13 +65,14 @@ pnpm add --save-dev react-scanner-studio
 
 :::
 
-Then add scripts to your `package.json`:
+Then add scripts to your `package.json` (or let `init` add them for you):
 
 ```json
 {
   "scripts": {
-    "scan": "react-scanner && react-scanner-studio start",
-    "scan:build": "react-scanner && react-scanner-studio build"
+    "scan": "react-scanner-studio scan",
+    "scan:start": "react-scanner-studio start",
+    "scan:build": "react-scanner-studio build"
   }
 }
 ```

@@ -23,6 +23,11 @@ docs/
 ├── configuration/
 │   ├── index.md           # Configuration overview
 │   └── options.md         # Configuration options reference
+├── quick-start/
+│   ├── index.md           # Quick start overview
+│   ├── automated.md       # Automated setup guide
+│   ├── manual.md          # Manual setup guide
+│   └── llm-assisted.md    # LLM-assisted setup guide
 ├── advanced/
 │   ├── ci-cd/
 │   │   ├── index.md           # CI/CD overview
@@ -71,9 +76,9 @@ npm run docs:preview
 
 | Script | Description |
 | ------ | ----------- |
-| `docs:dev` | Start the development server |
-| `docs:build` | Build the documentation for production |
-| `docs:preview` | Preview the production build locally |
+| `dev:docs` | Start the development server |
+| `build:docs` | Build the documentation for production |
+| `preview:docs` | Preview the production build locally |
 
 ## Writing Documentation
 

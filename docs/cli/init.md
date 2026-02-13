@@ -150,7 +150,6 @@ This filters which components to track (e.g., @mui/material, @chakra-ui/react, .
 
 - If `react-scanner.config.js` already exists, it will not be overwritten
 - The command uses interactive prompts and cannot be run non-interactively
-- After initialization, you need to run `npx react-scanner` to generate the scan data before using `start` or `build`
 
 ## Next Steps
 

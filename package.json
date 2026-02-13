@@ -1,7 +1,7 @@
 {
   "name": "react-scanner-studio",
   "type": "module",
-  "version": "1.0.0",
+  "version": "1.0.0-rc.3",
   "main": "dist/index.js",
   "keywords": [
     "react",
@@ -22,7 +22,7 @@
     "type": "git",
     "url": "git+https://github.com/vimalmunjani/react-scanner-studio.git"
   },
-  "homepage": "https://react-scanner-studio/",
+  "homepage": "https://reactscanner.studio",
   "logo": "logo.png",
   "author": "Vimal Munjani <vimal.j.munjani@gmail.com>",
   "license": "MIT",

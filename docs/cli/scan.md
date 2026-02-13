@@ -2,6 +2,10 @@
 
 Scan your codebase for component usage using react-scanner.
 
+::: tip Automatic Scanning
+You typically don't need to run `scan` manually. The `start` and `build` commands automatically detect if a scan report exists and prompt you to generate one if needed.
+:::
+
 ## Usage
 
 ```bash
@@ -86,14 +90,20 @@ The `scan` command fits into the typical workflow as follows:
 # 1. Initialize configuration (one-time)
 react-scanner-studio init
 
-# 2. Scan your codebase
-react-scanner-studio scan
-
-# 3. View or build the dashboard
+# 2. Start the dashboard (will prompt to scan if needed)
 react-scanner-studio start
-# or
+# or build static files
 react-scanner-studio build
 ```
+
+### When to Use scan Manually
+
+While `start` and `build` handle scanning automatically, you might want to use `scan` directly when:
+
+- Running in CI/CD pipelines where you want explicit control
+- Generating reports without starting the dashboard
+- Debugging scanner configuration issues
+- Integrating with custom scripts
 
 ## Combining with Other Commands
 
