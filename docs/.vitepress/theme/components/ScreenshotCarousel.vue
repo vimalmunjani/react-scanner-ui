@@ -2,7 +2,17 @@
   <div class="carousel-container">
     <div class="carousel-main">
       <button class="carousel-btn prev" @click="prev" aria-label="Previous">
-        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          width="24"
+          height="24"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        >
           <polyline points="15 18 9 12 15 6"></polyline>
         </svg>
       </button>
@@ -20,7 +30,17 @@
       </div>
 
       <button class="carousel-btn next" @click="next" aria-label="Next">
-        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          width="24"
+          height="24"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        >
           <polyline points="9 18 15 12 9 6"></polyline>
         </svg>
       </button>
@@ -50,17 +70,49 @@
     <!-- Fullscreen Lightbox -->
     <Teleport to="body">
       <Transition name="lightbox">
-        <div v-if="isFullscreen" class="lightbox-overlay" @click="closeFullscreen">
+        <div
+          v-if="isFullscreen"
+          class="lightbox-overlay"
+          @click="closeFullscreen"
+        >
           <div class="lightbox-content" @click.stop>
-            <button class="lightbox-close" @click="closeFullscreen" aria-label="Close">
-              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <button
+              class="lightbox-close"
+              @click="closeFullscreen"
+              aria-label="Close"
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="24"
+                height="24"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
                 <line x1="18" y1="6" x2="6" y2="18"></line>
                 <line x1="6" y1="6" x2="18" y2="18"></line>
               </svg>
             </button>
 
-            <button class="lightbox-nav prev" @click="prev" aria-label="Previous">
-              <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <button
+              class="lightbox-nav prev"
+              @click="prev"
+              aria-label="Previous"
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="32"
+                height="32"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
                 <polyline points="15 18 9 12 15 6"></polyline>
               </svg>
             </button>
@@ -72,11 +124,23 @@
                 class="lightbox-image"
               />
               <div class="lightbox-caption">{{ currentImage.alt }}</div>
-              <div class="lightbox-counter">{{ currentIndex + 1 }} / {{ images.length }}</div>
+              <div class="lightbox-counter">
+                {{ currentIndex + 1 }} / {{ images.length }}
+              </div>
             </div>
 
             <button class="lightbox-nav next" @click="next" aria-label="Next">
-              <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="32"
+                height="32"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
                 <polyline points="9 18 15 12 9 6"></polyline>
               </svg>
             </button>
@@ -99,76 +163,77 @@
 </template>
 
 <script setup>
-import { ref, computed, onMounted, onUnmounted } from 'vue'
+import { ref, computed, onMounted, onUnmounted } from 'vue';
 
 const props = defineProps({
   images: {
     type: Array,
-    required: true
+    required: true,
   },
   autoplay: {
     type: Boolean,
-    default: false
+    default: false,
   },
   interval: {
     type: Number,
-    default: 5000
-  }
-})
+    default: 5000,
+  },
+});
 
-const currentIndex = ref(0)
-const isFullscreen = ref(false)
+const currentIndex = ref(0);
+const isFullscreen = ref(false);
 
-const currentImage = computed(() => props.images[currentIndex.value])
+const currentImage = computed(() => props.images[currentIndex.value]);
 
 const next = () => {
-  currentIndex.value = (currentIndex.value + 1) % props.images.length
-}
+  currentIndex.value = (currentIndex.value + 1) % props.images.length;
+};
 
 const prev = () => {
-  currentIndex.value = (currentIndex.value - 1 + props.images.length) % props.images.length
-}
+  currentIndex.value =
+    (currentIndex.value - 1 + props.images.length) % props.images.length;
+};
 
-const goTo = (index) => {
-  currentIndex.value = index
-}
+const goTo = index => {
+  currentIndex.value = index;
+};
 
 const openFullscreen = () => {
-  isFullscreen.value = true
-  document.body.style.overflow = 'hidden'
-}
+  isFullscreen.value = true;
+  document.body.style.overflow = 'hidden';
+};
 
 const closeFullscreen = () => {
-  isFullscreen.value = false
-  document.body.style.overflow = ''
-}
+  isFullscreen.value = false;
+  document.body.style.overflow = '';
+};
 
-const handleKeydown = (e) => {
-  if (!isFullscreen.value) return
+const handleKeydown = e => {
+  if (!isFullscreen.value) return;
 
   if (e.key === 'Escape') {
-    closeFullscreen()
+    closeFullscreen();
   } else if (e.key === 'ArrowRight') {
-    next()
+    next();
   } else if (e.key === 'ArrowLeft') {
-    prev()
+    prev();
   }
-}
+};
 
 onMounted(() => {
-  window.addEventListener('keydown', handleKeydown)
-})
+  window.addEventListener('keydown', handleKeydown);
+});
 
 onUnmounted(() => {
-  window.removeEventListener('keydown', handleKeydown)
-  document.body.style.overflow = ''
-})
+  window.removeEventListener('keydown', handleKeydown);
+  document.body.style.overflow = '';
+});
 
 // Autoplay functionality
-let autoplayInterval = null
+let autoplayInterval = null;
 
 if (props.autoplay) {
-  autoplayInterval = setInterval(next, props.interval)
+  autoplayInterval = setInterval(next, props.interval);
 }
 </script>
 
