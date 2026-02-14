@@ -70,10 +70,6 @@ export default defineConfig({
         icon: 'github',
         link: 'https://github.com/vimalmunjani/react-scanner-studio',
       },
-      {
-        icon: 'linkedin',
-        link: 'https://www.linkedin.com/in/vimalmunjani/',
-      },
     ],
 
     footer: {

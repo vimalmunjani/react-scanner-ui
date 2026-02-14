@@ -1,0 +1,46 @@
+# Changelog
+
+All notable changes to this project will be documented in this file.
+
+The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
+and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
+
+## [1.0.0] - 2026-02-14
+
+### Added
+
+- **CLI Commands**
+  - `init` — Initialize react-scanner configuration in your project
+  - `scan` — Scan your codebase for component usage using react-scanner
+  - `start` — Start the interactive dashboard development server
+  - `build` — Build a portable, static version of the dashboard
+
+- **Interactive Dashboard**
+  - Component usage overview with visual statistics
+  - Detailed component inventory with search and filtering
+  - Prop usage analysis and patterns
+  - Treemap visualization for component distribution
+  - Usage charts and trends
+
+- **Developer Experience**
+  - Zero config setup with automatic configuration generation
+  - Auto-detection of popular component libraries (MUI, Chakra, Ant Design, etc.)
+  - Automatic react-scanner installation if not present
+  - CI/CD mode with `--ci` flag for non-interactive environments
+  - Custom port configuration with `--port` flag
+  - Auto-open browser with `--open` flag
+
+- **Portability**
+  - Static HTML build output for hosting anywhere
+  - Self-contained dashboard with no server required
+  - Shareable reports for team collaboration
+
+- **Documentation**
+  - Comprehensive documentation site
+  - Quick start guides (automated, manual, LLM-assisted)
+  - CLI command reference
+  - Configuration options guide
+  - CI/CD integration guides for GitHub Actions, GitLab CI, CircleCI, and Azure Pipelines
+  - Troubleshooting guide
+
+[1.0.0]: https://github.com/vimalmunjani/react-scanner-studio/releases/tag/v1.0.0

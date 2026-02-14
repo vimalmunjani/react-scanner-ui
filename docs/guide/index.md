@@ -71,6 +71,20 @@ React Scanner Studio requires:
 - **Node.js** 18.0 or higher
 - **react-scanner** (automatically installed during `init` if not present)
 
+## Future Plans
+
+React Scanner Studio currently leverages [react-scanner](https://github.com/moroshko/react-scanner) for codebase analysis. We are developing our own scanning engine that will introduce additional capabilities:
+
+- **Deeper component analysis** — Enhanced detection of component relationships, patterns, and hierarchies
+- **Performance insights** — Identification of potential performance bottlenecks in component usage
+- **Smarter prop intelligence** — More sophisticated prop pattern recognition and recommendations
+- **Framework-aware scanning** — Optimized support for Next.js, Remix, and other React frameworks
+- **Incremental scanning** — Faster scans by only analyzing changed files
+
+React Scanner Studio will continue to support `react-scanner` for those who prefer it. The new engine will be an optional upgrade.
+
+Follow our [GitHub repository](https://github.com/vimalmunjani/react-scanner-studio) or join our [Discord community](https://discord.gg/PU5xrNVd) for updates.
+
 ## What's Next?
 
 - [Installation Guide](/guide/installation) — Install React Scanner Studio
