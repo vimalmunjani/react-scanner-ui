@@ -1,7 +1,7 @@
 {
   "name": "react-scanner-studio",
   "type": "module",
-  "version": "1.0.0-rc.5",
+  "version": "1.0.0",
   "main": "dist/index.js",
   "files": [
     "dist",
