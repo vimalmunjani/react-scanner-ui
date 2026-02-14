@@ -23,7 +23,55 @@
 
 Visit our documentation site for detailed usage guides and API reference:
 
-👉 **[https://vimalmunjani.github.io/react-scanner-studio/](https://vimalmunjani.github.io/react-scanner-studio/)**
+👉 **[https://reactscanner.studio](https://reactscanner.studio)**
+
+## 🎬 Live Demo
+
+See React Scanner Studio in action:
+
+👉 **[https://demo.reactscanner.studio](https://demo.reactscanner.studio)**
+
+## 📸 Screenshots
+
+<details>
+<summary><strong>Dark Mode</strong></summary>
+
+### Dashboard Overview
+![Dashboard Dark](https://reactscanner.studio/screenshots/dashboard-dark.png)
+
+### Component Inventory
+![Component Inventory Dark](https://reactscanner.studio/screenshots/component-inventory-dark.png)
+
+### Component Overview
+![Component Overview Dark](https://reactscanner.studio/screenshots/component-overview-dark.png)
+
+### Component Prop Insights
+![Component Prop Insight Dark](https://reactscanner.studio/screenshots/component-prop-insight-dark.png)
+
+### Component File Location
+![Component File Location Dark](https://reactscanner.studio/screenshots/component-file-location-dark.png)
+
+</details>
+
+<details>
+<summary><strong>Light Mode</strong></summary>
+
+### Dashboard Overview
+![Dashboard Light](https://reactscanner.studio/screenshots/dashboard-light.png)
+
+### Component Inventory
+![Component Inventory Light](https://reactscanner.studio/screenshots/component-inventory-light.png)
+
+### Component Overview
+![Component Overview Light](https://reactscanner.studio/screenshots/component-overview-light.png)
+
+### Component Prop Insights
+![Component Prop Insight Light](https://reactscanner.studio/screenshots/component-prop-insight-light.png)
+
+### Component File Location
+![Component File Location Light](https://reactscanner.studio/screenshots/component-file-location-light.png)
+
+</details>
 
 ## 🚀 Quick Start
 

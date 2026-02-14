@@ -20,6 +20,7 @@ export default defineConfig({
         text: 'Introduction',
         items: [
           { text: 'What is React Scanner Studio?', link: '/guide/' },
+          { text: 'Screenshots', link: '/guide/screenshots' },
           { text: 'Installation', link: '/guide/installation' },
         ],
       },
