@@ -85,7 +85,7 @@ export default defineConfig({
   },
 
   head: [
-    ['link', { rel: 'icon', href: '/react-scanner-studio/favicon.ico' }],
+    ['link', { rel: 'icon', type: 'image/png', href: '/favicon.png' }],
     [
       'script',
       {
