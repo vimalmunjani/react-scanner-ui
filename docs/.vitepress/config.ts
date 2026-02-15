@@ -6,8 +6,13 @@ export default defineConfig({
     'A portable, interactive dashboard for analyzing React component usage across your codebase',
   base: '/',
 
+  sitemap: {
+    hostname: 'https://reactscanner.studio',
+  },
+
   themeConfig: {
     logo: '/logo.png',
+    lastUpdated: true,
     nav: [
       { text: 'Home', link: '/' },
       { text: 'Quick Start', link: '/quick-start/' },
