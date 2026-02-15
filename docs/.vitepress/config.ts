@@ -1,7 +1,7 @@
 import { defineConfig } from 'vitepress';
 
 const hostname = 'https://reactscanner.studio';
-const defaultTitle = 'React Scanner Studio - Interactive Component Usage Dashboard & Analysis';
+const defaultTitle = 'React Scanner Studio';
 const defaultDescription =
   'A portable, interactive dashboard for analyzing React component usage across your codebase';
 
@@ -10,7 +10,8 @@ export default defineConfig({
   description: defaultDescription,
   lang: 'en',
   base: '/',
-  titleTemplate: ':title | React Scanner Studio - Interactive Component Usage Dashboard & Analysis',
+  titleTemplate:
+    ':title | React Scanner Studio - Interactive Component Usage Dashboard & Analysis',
 
   sitemap: {
     hostname,
@@ -97,7 +98,14 @@ export default defineConfig({
 
   head: [
     ['link', { rel: 'icon', type: 'image/png', href: '/favicon.png' }],
-    ['meta', { name: 'keywords', content: 'React, component usage, design system, codebase analysis, react-scanner, dashboard, static analysis' }],
+    [
+      'meta',
+      {
+        name: 'keywords',
+        content:
+          'React, component usage, design system, codebase analysis, react-scanner, dashboard, static analysis',
+      },
+    ],
     ['meta', { name: 'robots', content: 'index, follow' }],
     // Open Graph (page-specific og:title, og:description, og:url added via transformPageData)
     ['meta', { property: 'og:type', content: 'website' }],
@@ -108,7 +116,14 @@ export default defineConfig({
     ['meta', { name: 'twitter:card', content: 'summary_large_image' }],
     ['meta', { name: 'twitter:image', content: `${hostname}/logo.png` }],
     // Preconnect to analytics origin so the deferred script connects faster when it loads
-    ['link', { rel: 'preconnect', href: 'https://cloud.umami.is', crossorigin: 'anonymous' }],
+    [
+      'link',
+      {
+        rel: 'preconnect',
+        href: 'https://cloud.umami.is',
+        crossorigin: 'anonymous',
+      },
+    ],
     // Load analytics after page is interactive to avoid impacting LCP and INP (PageSpeed)
     [
       'script',
@@ -133,14 +148,19 @@ export default defineConfig({
       ['meta', { property: 'og:title', content: title }],
       ['meta', { property: 'og:description', content: description }],
       ['meta', { name: 'twitter:title', content: title }],
-      ['meta', { name: 'twitter:description', content: description }],
+      ['meta', { name: 'twitter:description', content: description }]
     );
 
     // Preload LCP image on homepage to improve Largest Contentful Paint (PageSpeed)
     if (pageData.relativePath === 'index.md') {
       pageData.frontmatter.head.push([
         'link',
-        { rel: 'preload', href: '/logo-320.png', as: 'image', fetchpriority: 'high' },
+        {
+          rel: 'preload',
+          href: '/logo-320.png',
+          as: 'image',
+          fetchpriority: 'high',
+        },
       ]);
     }
   },
