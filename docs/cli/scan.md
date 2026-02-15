@@ -165,15 +165,6 @@ If react-scanner encounters errors during scanning (e.g., syntax errors in your 
 ╰─────────────────────────────────────────────╯
 ```
 
-## Comparison with Direct react-scanner Usage
-
-| Feature            | `react-scanner-studio scan` | `npx react-scanner`           |
-| ------------------ | --------------------------- | ----------------------------- |
-| Auto-finds config  | ✅ Yes                      | ❌ No (uses default location) |
-| Styled output      | ✅ Yes                      | ❌ Plain text                 |
-| Progress indicator | ✅ Yes                      | ❌ No                         |
-| Next steps hint    | ✅ Yes                      | ❌ No                         |
-
 ## See Also
 
 - [init](/cli/init) — Initialize configuration
